@@ -25,11 +25,19 @@ WebUI.comment('Given that the user has the valid login information')
 
 WebUI.openBrowser(GlobalVariable.G_SiteURL)
 
+WebUI.maximizeWindow()
+
 WebUI.click(findTestObject('Page_CuraHomepage/btn_MakeAppointment'))
+
+// Check login section using TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Login Dialog Origin', LoginObject)
 
 WebUI.setText(findTestObject('Page_Login/txt_UserName'), Username)
 
 WebUI.setText(findTestObject('Page_Login/txt_Password'), Password)
+
+// Check login section with data using TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Login Dialog With Data', LoginObject)
 
 WebUI.comment('When he logins to CURA system')
 

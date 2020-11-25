@@ -25,29 +25,47 @@ WebUI.comment('Given that the user has logged into their account')
 
 WebUI.openBrowser(GlobalVariable.G_SiteURL)
 
-WebUI.takeScreenshotAsCheckpoint('login', null)
+WebUI.maximizeWindow()
 
 WebUI.callTestCase(findTestCase('Common Test Cases/Login'), [('Username') : 'John Doe', ('Password') : 'ThisIsNotAPassword'], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.comment('And Appointment page is displayed')
 
-WebUI.takeScreenshotAsCheckpoint('appointment', null)
+// Check appointment section with TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Appointment Dialog Origin', AppointmentDialogObject)
 
 WebUI.selectOptionByLabel(findTestObject('Page_CuraAppointment/lst_Facility'), 'Hongkong CURA Healthcare Center', false)
 
+// Check Facility with TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Facilty', FacilityObject)
+
 WebUI.check(findTestObject('Page_CuraAppointment/chk_Medicaid'))
+
+// Check medicare with TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Medicare', MedicareChoicesObject)
 
 WebUI.check(findTestObject('Page_CuraAppointment/chk_Readmission'))
 
 WebUI.setText(findTestObject('Page_CuraAppointment/txt_VisitDate'), '27/12/2016')
+WebUI.click(CommentLabelObject) // just to hide date chooser
+
+// Check date with TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Visit Date', DateObject)
 
 WebUI.setText(findTestObject('Page_CuraAppointment/txt_Comment'), 'Please make appointment as soon as possible.')
 
+// Check comment with TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Comment', CommentObject)
+
 WebUI.comment('When he fills in valid information in Appointment page')
+
+// Check data with TestOps Vision
+WebUI.takeElementScreenshotAsCheckpoint('Appointment Dialog With Data', AppointmentDialogObject)
 
 WebUI.click(findTestObject('Page_CuraAppointment/btn_BookAppointment'))
 
-WebUI.takeScreenshotAsCheckpoint('confirmation', null)
+// Check Full Appointment with TestOps Vision
+WebUI.takeFullPageScreenshotAsCheckpoint('Review Appoitment')
 
 WebUI.verifyTextPresent('Appointment Confirmation', false)
 
@@ -63,7 +81,6 @@ WebUI.verifyMatch('27/12/2016', WebUI.getText(findTestObject('Page_AppointmentCo
 
 WebUI.verifyMatch('Please make appointment as soon as possible.', WebUI.getText(findTestObject('Page_AppointmentConfirmation/lbl_Comment')), false)
 
-WebUI.takeScreenshot()
 WebUI.closeBrowser()
 
 
