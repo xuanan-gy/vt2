@@ -55,7 +55,7 @@ WebUI.takeElementScreenshotAsCheckpoint('Visit Date', DateObject)
 WebUI.setText(findTestObject('Page_CuraAppointment/txt_Comment'), 'Please make appointment as soon as possible.')
 
 // Check comment with TestOps Vision
-WebUI.takeElementScreenshotAsCheckpoint('Comment', CommentObject)
+//WebUI.takeElementScreenshotAsCheckpoint('Comment', CommentObject)
 
 WebUI.comment('When he fills in valid information in Appointment page')
 
